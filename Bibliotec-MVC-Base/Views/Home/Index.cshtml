@@ -1,0 +1,88 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/padrao.css">
+    <link rel="stylesheet" href="~/css/home.css">
+}
+
+@section Scripts {
+    <script src="~/js/home.js" defer></script>
+}
+
+<section class="banner">
+    <div class="container_banner">
+        <div class="texto_banner">
+            <span>Bem-vindo ao Bibliotec</span>
+            <p>O melhor gerenciador para biblioteca de<br> maneira moderna e automatizada!</p>
+            <a href="">acessar</a>
+        </div>
+        <img src="~/img/mulher banner.png" alt="">
+    </div>
+</section>
+
+<section class="cards_info">
+    <h2>Por que usar a Bibliotec?</h2>
+    <div class="linha_h2"></div>
+
+    <div class="container_cards_info">
+        <div class="card_info">
+            <div class="esfera_icone">
+                <img src="~/img/livro.svg" alt="icone de livro">
+            </div>
+            <h3>reserve seu livro online</h3>
+            <p>Imagine livros que ama listados em um único lugar</p>
+        </div>
+        <div class="card_info">
+            <div class="esfera_icone">
+                <img src="~/img/lista.svg" alt="icone de lista">
+            </div>
+            <h3>visualize se seu livro estará disponivel</h3>
+            <p>Reserve seu livro de onde estiver</p>
+        </div>
+        <div class="card_info">
+            <div class="esfera_icone">
+                <img src="~/img/coracao.svg" alt="icone de coração">
+            </div>
+            <h3>faça sua lista de favoritos</h3>
+            <p>Selecione seus livros favoritos para ler mais tarde</p>
+        </div>
+    </div>
+</section>
+
+<section class="banner2">
+    <div class="banner2_texto">
+        <h2>Acesse a nossa plataforma</h2>
+        <p>Faça o login ou solicite cadastro para a bibliotecária.</p>
+        <a href="/Login">Acesse</a>
+    </div>
+</section>
+
+<section class="cards_livros" id="secao_livros">
+    <h2>Top livros recomendados</h2>
+    <div class="linha_h2"></div>
+
+    <div class="container_livros">
+        <div class="card_livro">
+            <img src="~/img/EscolaBemMal.png" alt="">
+            <h3>a escola do bem e do mal</h3>
+            <p><span>Autor(a): </span>Soman Chainani</p>
+        </div>
+        <div class="card_livro">
+            <img src="~/img/FilhasDaLua.png" alt="">
+            <h3>filhas da lua</h3>
+            <p><span>Autor(a): </span>Carolina França</p>
+        </div>
+        <div class="card_livro">
+            <img src="~/img/TiParaNegocios.png" alt="">
+            <h3>TI para negócios</h3>
+            <p><span>Autor(a): </span>Edson Perin</p>
+        </div>
+        <div class="card_livro">
+            <img src="~/img/MestresDoTempo.png" alt="">
+            <h3>mestres do tempo</h3>
+            <p><span>Autor(a): </span>Alessandra Garcia</p>
+        </div>
+    </div>
+</section>

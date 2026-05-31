@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibliotec-MVC-Base", "Bibliotec-MVC-Base.csproj", "{0851797B-5473-A757-E615-7F3DDC3584BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0851797B-5473-A757-E615-7F3DDC3584BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0851797B-5473-A757-E615-7F3DDC3584BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0851797B-5473-A757-E615-7F3DDC3584BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0851797B-5473-A757-E615-7F3DDC3584BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90A7EE88-04B0-406B-85A2-249EB99D1DD9}
+	EndGlobalSection
+EndGlobal

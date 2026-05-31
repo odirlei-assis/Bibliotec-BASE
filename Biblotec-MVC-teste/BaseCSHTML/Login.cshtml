@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/padrao.css">
+    <link rel="stylesheet" href="~/css/login.css">
+}
+
+@section Scripts {
+    <script src="~/js/login.js" defer></script>
+}
+
+<main class="main_login">
+
+    <div class="box_login">
+
+        <span>Entre no Bibliotec</span>
+
+        <form method="post" action="">
+
+            <!-- Mensagem de erro -->
+            <!-- <p class="msg_erro_login">E-mail ou senha incorretos!</p> -->
+
+            <div class="form_linha">
+                <label for="email">E-mail</label>
+
+                <input type="email" name="Email" id="email" placeholder="email@alunosenai.com" required>
+            </div>
+
+            <div class="form_linha">
+                <label for="senha">Senha</label>
+
+                <input type="password" name="Senha" id="senha" placeholder="**********" required>
+            </div>
+
+            <div class="recuperar_senha">
+                <a href="">
+                    Esqueci minha senha
+                </a>
+            </div>
+
+            <button type="submit">
+                entrar
+            </button>
+
+        </form>
+    </div>
+</main>

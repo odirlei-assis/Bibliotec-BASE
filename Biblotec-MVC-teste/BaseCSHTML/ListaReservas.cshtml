@@ -1,0 +1,230 @@
+@{
+    ViewData["Title"] = "Listagem de Reservas";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/aside.css">
+    <link rel="stylesheet" href="~/css/logado.css">
+    <link rel="stylesheet" href="~/css/listalivros.css">
+    <link rel="stylesheet" href="~/css/listaReserva.css">
+    <link rel="stylesheet" href="~/css/cadastrolivro.css">
+}
+
+@section Scripts {
+    <script src="~/js/logado.js"></script>
+    <script src="~/js/listaReserva.js"></script>
+}
+
+<div class="container_logado">
+
+    <div class="container_main">
+
+        <section class="main_box_conteudo">
+            <h1>Listagem de Reservas</h1>
+
+            <div class="filtros_reserva">
+                <input type="text" id="filtroTitulo" placeholder="Buscar por título..." />
+
+                <select id="filtroStatus">
+                    <option value="">Todos os Status</option>
+                    <option value="E">Em Espera</option>
+                    <option value="P">Em Posse</option>
+                    <option value="A">Atrasado</option>
+                    <option value="F">Finalizado</option>
+                </select>
+            </div>
+
+            <div class="container_lista_livros">
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th class="col_id">Id Livro</th>
+                            <th>Título do Livro</th>
+                            <th>Data Reserva</th>
+                            <th class="col_status">Status</th>
+                            <th class="col_opcoes">Opções</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr class="reserva_row">
+
+                            <td data-cell="Id Livro" class="col_id">
+                                1
+                            </td>
+
+                            <td data-cell="Título">
+                                A Escola do Bem e do Mal
+                            </td>
+
+                            <td data-cell="Data Reserva">
+                                10/05/2026
+                            </td>
+
+                            <td data-cell="Status" class="col_status">
+                                <span class="status statusE" title="Esp.">
+                                    Esp.
+                                </span>
+                            </td>
+
+                            <td data-cell="Opções" class="col_opcoes">
+
+                                <a href="javascript:void(0)" class="btn_detalhes_reserva">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                        <path fill="currentColor"
+                                              d="M282.6 155.1L304 164L304 542.7C254.2 522.4 201 512 147.2 512z" />
+                                    </svg>
+                                </a>
+
+                                <a href="javascript:void(0)" class="btn_editar_reserva">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                        <path fill="currentColor"
+                                              d="M436 96C425.3 96 415.1 100.2 407.5 107.8L349 166.3z" />
+                                    </svg>
+                                </a>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Modal de Detalhes -->
+        <div id="modalDetalhes" class="modal_overlay">
+
+            <div class="modal_box main_box_conteudo">
+
+                <button id="fecharModalDetalhes" class="btn_fechar">
+                    X
+                </button>
+
+                <h1>Detalhes da Reserva</h1>
+
+                <div class="modal_conteudo_livro modal_conteudo_reserva">
+
+                    <div class="modal_info modal_info_reserva">
+
+                        <p>
+                            <strong>Id da Reserva:</strong>
+                            <span id="detId"></span>
+                        </p>
+
+                        <p>
+                            <strong>Livro:</strong>
+                            <span id="detLivro"></span>
+                        </p>
+
+                        <p>
+                            <strong>Aluno:</strong>
+                            <span id="detAluno"></span>
+                        </p>
+
+                        <p>
+                            <strong>Data da Reserva:</strong>
+                            <span id="detDataReserva"></span>
+                        </p>
+
+                        <p>
+                            <strong>Data de Empréstimo:</strong>
+                            <span id="detDataEmprestimo"></span>
+                        </p>
+
+                        <p>
+                            <strong>Devolução Prevista:</strong>
+                            <span id="detDataDevolucao"></span>
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            <span id="detStatus"></span>
+                        </p>
+
+                        <p>
+                            <strong>Dano ao Livro:</strong>
+                            <span id="detDano"></span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Edição -->
+        <div id="modalEditar" class="modal_overlay">
+
+            <div class="modal_box main_box_conteudo">
+
+                <button id="fecharModalEditar" class="btn_fechar">
+                    X
+                </button>
+
+                <h1 class="titulo_modal_editar">
+                    Editar Reserva
+                </h1>
+
+                <form class="form_cad_livro" action="/Reserva/Editar" method="POST">
+
+                    <input type="hidden" id="editId" name="Id" />
+
+                    <div class="linha_form_dupla">
+
+                        <div class="campo_form campo_form_metade">
+                            <label for="editDataEmprestimo">
+                                Data de Empréstimo
+                            </label>
+
+                            <input type="date" id="editDataEmprestimo" name="DataEmprestimo">
+                        </div>
+
+                        <div class="campo_form campo_form_metade">
+                            <label for="editDataDevolucao">
+                                Devolução Prevista
+                            </label>
+
+                            <input type="date" id="editDataDevolucao" name="DataPrevistaDevolucao">
+                        </div>
+
+                    </div>
+
+                    <div class="campo_form">
+
+                        <label for="editStatus">
+                            Status
+                        </label>
+
+                        <select id="editStatus" name="Status" required>
+
+                            <option value="E">Espera</option>
+                            <option value="P">Posse</option>
+                            <option value="A">Atraso</option>
+                            <option value="F">Finalizada</option>
+
+                        </select>
+                    </div>
+
+                    <div class="campo_form">
+
+                        <label for="editDano">
+                            Dano ao Livro
+                        </label>
+
+                        <textarea name="DanoLivro" id="editDano" rows="4"></textarea>
+
+                    </div>
+
+                    <button type="submit" class="botao_cad">
+                        Salvar Edição
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+:root {
+    --cor_principal: #26333D;
+    --cor_branca: #FFFFFF;
+    --cor_destaque: #2FD6CB;
+    --cor_cinza: #F5F5F5;
+    --altura_cabecalho: 96px;
+
+}
+
+textarea {
+    resize: none;
+    overflow-y: auto;
+}

@@ -1,0 +1,125 @@
+.container_logado {
+    display: flex;
+
+    /* ---------- 1 BACKGROUND ---------- */
+    /* background:
+        url("../img/bg1.svg"),
+        #f8f8f8;
+    background-repeat: no-repeat;
+    background-position: top -140px right -140px;
+    background-size: 450px; */
+
+    /* ---------- 2 BACKGROUNDS ---------- */
+    background-image:
+        url("../img/bg1.svg"),
+        url("../img/bg2.svg");
+
+    background-repeat:
+        no-repeat;
+
+    background-position:
+        top -140px right -140px,
+        bottom -140px left -100px;
+
+    background-size:
+        600px;
+
+    background-color: #f8f8f8;
+}
+
+
+
+
+/* ---------- MAIN ---------- */
+.container_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 75%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    -webkit-transition: width 0.3s ease-in-out;
+    -moz-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+}
+
+.main_box_conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    /* flex-wrap: wrap; */
+    /* justify-content: space-between; */
+    /* justify-content: center; */
+
+    width: 100%;
+    height: 90vh;
+    min-height: 600px;
+    padding: 30px;
+    margin: 20px;
+
+    background-color: #ffffff90;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 35px;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+
+    overflow: auto;
+}
+
+.main_box_conteudo h1 {
+    width: 90%;
+    font-size: 28px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .sombra {
+        width: 100vw;
+        height: 100vh;
+        background-color: #26333Da0;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        transition: width 0.5s ease-in-out;
+        -o-transition: width 0.5s ease-in-out;
+        -moz-transition: width 0.5s ease-in-out;
+        -webkit-transition: width 0.5s ease-in-out;
+    }
+
+    .movimento_sombra {
+        width: 0;
+    }
+
+    .menu_lateral {
+        position: absolute;
+    }
+
+    .container_main {
+        width: 90%;
+    }
+
+    .container_main::before {
+        content: "";
+        height: 100vh;
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container_main {
+        width: 100%;
+    }
+}

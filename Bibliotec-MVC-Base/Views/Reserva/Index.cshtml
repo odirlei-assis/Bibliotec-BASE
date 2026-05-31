@@ -1,0 +1,180 @@
+@model IEnumerable<Bibliotec_MVC_Base.Entities.Reserva>
+@{
+    ViewData["Title"] = "Listagem de Reservas";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/aside.css">
+    <link rel="stylesheet" href="~/css/logado.css">
+    <link rel="stylesheet" href="~/css/listalivros.css">
+    <link rel="stylesheet" href="~/css/listaReserva.css">
+    <link rel="stylesheet" href="~/css/cadastrolivro.css">
+}
+
+<div class="container_logado">
+    <partial name="_MenuLateral" />
+
+    <div class="container_main">
+        <section class="main_box_conteudo">
+            <h1>Listagem de Reservas</h1>
+            <div class="filtros_reserva">
+                <input type="text" id="filtroTitulo" placeholder="Buscar por título..." />
+                <select id="filtroStatus">
+                    <option value="">Todos os Status</option>
+                    <option value="E">Em Espera</option>
+                    <option value="P">Em Posse</option>
+                    <option value="A">Atrasado</option>
+                    <option value="F">Finalizado</option>
+                </select>
+            </div>
+
+            <div class="container_lista_livros">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col_id">Id Livro</th>
+                            <th>Título do Livro</th>
+                            <th>Data Reserva</th>
+                            <th class="col_status">Status</th>
+                            <th class="col_opcoes">Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var reserva in Model)
+                            {
+                                var statusCss = "";
+                                var statusTexto = "";
+                                
+                                if (reserva.Status == "E") { statusCss = "statusE"; statusTexto = "Esp."; }
+                                else if (reserva.Status == "P") { statusCss = "statusP"; statusTexto = "Pos."; }
+                                else if (reserva.Status == "A") { statusCss = "statusA"; statusTexto = "Atr."; }
+                                else if (reserva.Status == "F") { statusCss = "statusF"; statusTexto = "Fin."; }
+
+                                <tr class="reserva_row" data-status="@reserva.Status">
+                                    <td data-cell="Id Livro" class="col_id">@reserva.LivroId</td>
+                                    <td data-cell="Título">@(reserva.Livro?.Titulo ?? "N/A")</td>
+                                    <td data-cell="Data Reserva">@reserva.DataReserva.ToString("dd/MM/yyyy")</td>
+                                    <td data-cell="Status" class="col_status">
+                                        <span class="status @statusCss" title="@statusTexto">@statusTexto</span>
+                                    </td>
+                                    <td data-cell="Opções" class="col_opcoes">
+                                        <a href="javascript:void(0)" class="btn_detalhes_reserva" title="Detalhes"
+                                            data-id="@reserva.Id"
+                                            data-livro="@(reserva.Livro?.Titulo ?? "N/A")"
+                                            data-aluno="@(reserva.Aluno?.Nome ?? "N/A")"
+                                            data-datareserva="@reserva.DataReserva.ToString("dd/MM/yyyy")"
+                                            data-dataemprestimo="@(reserva.DataEmprestimo?.ToString("dd/MM/yyyy") ?? "")"
+                                            data-datadevolucao="@(reserva.DataPrevistaDevolucao?.ToString("dd/MM/yyyy") ?? "")"
+                                            data-status="@(statusTexto == "Fin." ? "Finalizado" :
+                                                            statusTexto == "Atr." ? "Atrasado" :
+                                                            statusTexto == "Pos." ? "Em Posse" :
+                                                            statusTexto == "Esp." ? "Em Espera" : "")"
+                                            data-dano="@reserva.DanoLivro"
+                                            data-celular="@(reserva.Aluno?.NumCel ?? "")">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M282.6 155.1L304 164L304 542.7C254.2 522.4 201 512 147.2 512L112 512C103.2 512 96 504.8 96 496L96 144C96 135.2 103.2 128 112 128L147.2 128C193.7 128 239.7 137.2 282.6 155.1zM492.8 512C439 512 385.8 522.4 336 542.7L336 164L357.4 155.1C400.3 137.2 446.3 128 492.8 128L528 128C536.8 128 544 135.2 544 144L544 496C544 504.8 536.8 512 528 512L492.8 512zM320 136L294.9 125.5C248.1 106 197.9 96 147.2 96L112 96C85.5 96 64 117.5 64 144L64 496C64 522.5 85.5 544 112 544L147.2 544C197.9 544 248.1 554 294.9 573.5L307.7 578.8C315.6 582.1 324.4 582.1 332.3 578.8L345.1 573.5C391.9 554 442.1 544 492.8 544L528 544C554.5 544 576 522.5 576 496L576 144C576 117.5 554.5 96 528 96L492.8 96C442.1 96 391.9 106 345.1 125.5L320 136zM160 192C151.2 192 144 199.2 144 208C144 216.8 151.2 224 160 224L172.2 224C193.2 224 214 228.9 232.8 238.3C240.7 242.3 250.3 239 254.3 231.1C258.3 223.2 255 213.6 247.1 209.6C223.8 198 198.2 191.9 172.2 191.9L160 192zM467.8 192C441.8 192 416.1 198.1 392.9 209.7C385 213.7 381.8 223.3 385.7 231.2C389.6 239.1 399.3 242.3 407.2 238.4C426 229 446.8 224.1 467.8 224.1L480 224.1C488.8 224.1 496 216.9 496 208.1C496 199.3 488.8 192.1 480 192.1L467.8 192.1zM160 288C151.2 288 144 295.2 144 304C144 312.8 151.2 320 160 320L172.2 320C193.2 320 214 324.9 232.8 334.3C240.7 338.3 250.3 335 254.3 327.1C258.3 319.2 255 309.6 247.1 305.6C223.8 294 198.2 287.9 172.2 287.9L160 288zM467.8 288C441.8 288 416.1 294.1 392.9 305.7C385 309.7 381.8 319.3 385.7 327.2C389.6 335.1 399.3 338.3 407.2 334.4C426 325 446.8 320.1 467.8 320.1L480 320.1C488.8 320.1 496 312.9 496 304.1C496 295.3 488.8 288.1 480 288.1L467.8 288.1zM160 384C151.2 384 144 391.2 144 400C144 408.8 151.2 416 160 416L172.2 416C193.2 416 214 420.9 232.8 430.3C240.7 434.3 250.3 431 254.3 423.1C258.3 415.2 255 405.6 247.1 401.6C223.8 390 198.2 383.9 172.2 383.9L160 384zM467.8 384C441.8 384 416.1 390.1 392.9 401.7C385 405.7 381.8 415.3 385.7 423.2C389.6 431.1 399.3 434.3 407.2 430.4C426 421 446.8 416.1 467.8 416.1L480 416.1C488.8 416.1 496 408.9 496 400.1C496 391.3 488.8 384.1 480 384.1L467.8 384.1z"/></svg>
+                                        </a>
+                                        @if (ViewBag.Admin == true)
+                                        {
+                                            <a href="javascript:void(0)" class="btn_editar_reserva" title="Editar"
+                                                data-id="@reserva.Id"
+                                                data-dataemprestimo="@(reserva.DataEmprestimo?.ToString("yyyy-MM-dd") ?? "")"
+                                                data-datadevolucao="@(reserva.DataPrevistaDevolucao?.ToString("yyyy-MM-dd") ?? "")"
+                                                data-dano="@reserva.DanoLivro"
+                                                data-status="@reserva.Status">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M436 96C425.3 96 415.1 100.2 407.5 107.8L349 166.3L441.7 259L500.2 200.5C507.8 192.9 512 182.7 512 172C512 161.3 507.8 151.1 500.2 143.5L464.5 107.8C456.9 100.2 446.7 96 436 96zM113.6 401.8C106.8 408.6 101.8 417.1 99.2 426.4L67.5 540.5L181.6 508.8C190.9 506.2 199.4 501.3 206.2 494.4L419 281.7L326.3 189L113.6 401.8zM384.9 85.2C398.4 71.6 416.8 64 436 64C455.2 64 473.6 71.6 487.1 85.2L522.8 120.9C536.4 134.4 544 152.8 544 172C544 191.2 536.4 209.6 522.8 223.1L228.8 517.1C218.1 527.8 204.7 535.6 190.1 539.7L62.4 575.1C54.1 577.4 45.1 575.1 39 568.9C32.9 562.7 30.5 553.8 32.8 545.5L68.4 417.8C72.5 403.2 80.2 389.9 91 379.1L385 85.1zM304 544L592 544C600.8 544 608 551.2 608 560C608 568.8 600.8 576 592 576L304 576C295.2 576 288 568.8 288 560C288 551.2 295.2 544 304 544z"/></svg>
+                                            </a>
+                                        }
+                                        <button type="button" class="btn_excluir_reserva" data-id="@reserva.Id" title="Excluir">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M256.5 91.4C258.5 84.6 264.8 80 271.8 80L368.2 80C375.3 80 381.5 84.6 383.5 91.4L394.5 128L245.5 128L256.5 91.4zM212.1 128L112 128C103.2 128 96 135.2 96 144C96 152.8 103.2 160 112 160L528 160C536.8 160 544 152.8 544 144C544 135.2 536.8 128 528 128L427.9 128L414.2 82.2C408.1 61.9 389.4 48 368.2 48L271.8 48C250.6 48 231.9 61.9 225.8 82.2L212.1 128zM128 208L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 208L480 208L480 512C480 529.7 465.7 544 448 544L192 544C174.3 544 160 529.7 160 512L160 208L128 208zM240 272C240 263.2 232.8 256 224 256C215.2 256 208 263.2 208 272L208 464C208 472.8 215.2 480 224 480C232.8 480 240 472.8 240 464L240 272zM336 272C336 263.2 328.8 256 320 256C311.2 256 304 263.2 304 272L304 464C304 472.8 311.2 480 320 480C328.8 480 336 472.8 336 464L336 272zM432 272C432 263.2 424.8 256 416 256C407.2 256 400 263.2 400 272L400 464C400 472.8 407.2 480 416 480C424.8 480 432 472.8 432 464L432 272z"/></svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <td colspan="5" class="msg_vazio">Nenhuma reserva encontrada!</td>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Modal de Detalhes da Reserva -->
+        <div id="modalDetalhes" class="modal_overlay">
+            <div class="modal_box main_box_conteudo">
+                <button id="fecharModalDetalhes" class="btn_fechar">X</button>
+                <h1>Detalhes da Reserva</h1>
+                <div class="modal_conteudo_livro modal_conteudo_reserva">
+                    <div class="modal_info modal_info_reserva">
+                        <p><strong>Id da Reserva:</strong> <span id="detId"></span></p>
+                        <p><strong>Livro:</strong> <span id="detLivro"></span></p>
+                        <p><strong>Aluno:</strong> <span id="detAluno"></span></p>
+                        @if (ViewBag.Admin == true)
+                        {
+                            <p style="display: flex; align-items: center; gap: 8px;">
+                                <strong>Celular:</strong> 
+                                <span id="detCelular"></span>
+                                <img src="~/img/eye-low-vision.svg" id="toggleCelular" style="cursor: pointer; width: 20px;" alt="Mostrar Celular" />
+                            </p>
+                        }
+                        <p><strong>Data da Reserva:</strong> <span id="detDataReserva"></span></p>
+                        <p><strong>Data de Empréstimo:</strong> <span id="detDataEmprestimo"></span></p>
+                        <p><strong>Devolução Prevista:</strong> <span id="detDataDevolucao"></span></p>
+                        <p><strong>Status:</strong> <span id="detStatus"></span></p>
+                        <p><strong>Dano ao Livro:</strong> <span id="detDano"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Edição da Reserva -->
+        <div id="modalEditar" class="modal_overlay">
+            <div class="modal_box main_box_conteudo">
+                <button id="fecharModalEditar" class="btn_fechar">X</button>
+                <h1 class="titulo_modal_editar">Editar Reserva</h1>
+                
+                <form class="form_cad_livro" action="/Reserva/Editar" method="POST">
+                    <input type="hidden" id="editId" name="Id" />
+                    
+                    <div class="linha_form_dupla">
+                        <div class="campo_form campo_form_metade">
+                            <label for="editDataEmprestimo">Data de Empréstimo</label>
+                            <input type="date" id="editDataEmprestimo" name="DataEmprestimo">
+                        </div>
+                        <div class="campo_form campo_form_metade">
+                            <label for="editDataDevolucao">Devolução Prevista</label>
+                            <input type="date" id="editDataDevolucao" name="DataPrevistaDevolucao">
+                        </div>
+                    </div>
+
+                    <div class="campo_form">
+                        <label for="editStatus">Status</label>
+                        <select id="editStatus" name="Status" required>
+                            <option value="E">Espera</option>
+                            <option value="P">Posse</option>
+                            <option value="A">Atraso</option>
+                            <option value="F">Finalizada</option>
+                        </select>
+                    </div>
+
+                    <div class="campo_form">
+                        <label for="editDano">Dano ao Livro</label>
+                        <textarea name="DanoLivro" id="editDano" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="botao_cad">Salvar Edição</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/logado.js"></script>
+    <script src="~/js/listaReserva.js"></script>
+}

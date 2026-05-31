@@ -1,0 +1,204 @@
+@{
+    ViewData["Title"] = "Listagem de Livros";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/padrao.css">
+    <link rel="stylesheet" href="~/css/aside.css">
+    <link rel="stylesheet" href="~/css/logado.css">
+    <link rel="stylesheet" href="~/css/listalivros.css">
+    <link rel="stylesheet" href="~/css/cadastroLivro.css">
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/logado.js"></script>
+    <script src="~/js/listalivros.js"></script>
+}
+
+<div class="container_logado">
+
+    <div class="container_main">
+        <section class="main_box_conteudo">
+            <h1>Listagem de Livros</h1>
+
+            <div class="busca_container">
+                <input type="text" id="inputBusca" placeholder="Buscar por título, categoria ou status..." />
+            </div>
+
+            <div class="container_lista_livros">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col_id">Id</th>
+                            <th>Título</th>
+                            <th>Cat.</th>
+                            <th class="col_status">Status</th>
+                            <th class="col_opcoes">Opções</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td data-cell="Id" class="col_id">1</td>
+
+                            <td data-cell="Título">
+                                Senhor dos Anéis
+                            </td>
+
+                            <td data-cell="Cat.">
+                                <span class="tag">Fantasia</span>
+                                <span class="tag">Aventura</span>
+                            </td>
+
+                            <td data-cell="Status" class="col_status">
+                                <span class="status statusD" title="Disponível">Disp.</span>
+                            </td>
+
+                            <td data-cell="Opções">
+                                <a href="javascript:void(0)" class="btn_detalhes">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                        <path fill="currentColor"
+                                              d="M282.6 155.1L304 164L304 542.7C254.2 522.4 201 512 147.2 512L112 512C103.2 512 96 504.8 96 496L96 144C96 135.2 103.2 128 112 128L147.2 128C193.7 128 239.7 137.2 282.6 155.1zM492.8 512C439 512 385.8 522.4 336 542.7L336 164L357.4 155.1C400.3 137.2 446.3 128 492.8 128L528 128C536.8 128 544 135.2 544 144L544 496C544 504.8 536.8 512 528 512L492.8 512zM320 136L294.9 125.5C248.1 106 197.9 96 147.2 96L112 96C85.5 96 64 117.5 64 144L64 496C64 522.5 85.5 544 112 544L147.2 544C197.9 544 248.1 554 294.9 573.5L307.7 578.8C315.6 582.1 324.4 582.1 332.3 578.8L345.1 573.5C391.9 554 442.1 544 492.8 544L528 544C554.5 544 576 522.5 576 496L576 144C576 117.5 554.5 96 528 96L492.8 96C442.1 96 391.9 106 345.1 125.5L320 136z" />
+                                    </svg>
+                                </a>
+
+                                <a href="javascript:void(0)" class="btn_editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                        <path fill="currentColor"
+                                              d="M436 96C425.3 96 415.1 100.2 407.5 107.8L349 166.3L441.7 259L500.2 200.5C507.8 192.9 512 182.7 512 172C512 161.3 507.8 151.1 500.2 143.5L464.5 107.8C456.9 100.2 446.7 96 436 96z" />
+                                    </svg>
+                                </a>
+
+                                <button type="button" class="btn_excluir_livro">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                        <path fill="currentColor"
+                                              d="M256.5 91.4C258.5 84.6 264.8 80 271.8 80L368.2 80C375.3 80 381.5 84.6 383.5 91.4L394.5 128L245.5 128L256.5 91.4z" />
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="5">Nenhum livro encontrado!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Modal de Detalhes -->
+        <div id="modalDetalhes" class="modal_overlay">
+            <div class="modal_box">
+                <button id="fecharModal" class="btn_fechar">X</button>
+
+                <h1 id="modalTitulo">Título do Livro</h1>
+
+                <div class="modal_conteudo_livro">
+                    <img id="modalImagem" src="img/imagem.png" alt="Capa do Livro" class="img_modal" />
+
+                    <div class="modal_info">
+                        <p><strong>Id:</strong> <span id="modalId"></span></p>
+                        <p><strong>Autor:</strong> <span id="modalAutor"></span></p>
+                        <p><strong>Editora:</strong> <span id="modalEditora"></span></p>
+                        <p><strong>Ano de Publicação:</strong> <span id="modalAno"></span></p>
+                        <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+                        <p><strong>Categorias:</strong> <span id="modalCategorias"></span></p>
+                        <p><strong>Sinopse:</strong> <span id="modalSinopse"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Edição -->
+        <div id="modalEditar" class="modal_overlay">
+            <div class="modal_box modal_box_amplo">
+
+                <button id="fecharModalEditar" class="btn_fechar">X</button>
+
+                <h1 class="titulo_modal_editar">Editar Livro</h1>
+
+                <form class="form_cad_livro" action="" method="POST" enctype="multipart/form-data">
+
+                    <input type="hidden" id="editId" name="Id" />
+
+                    <div class="linha_form">
+                        <div class="campo_form">
+                            <label for="editTitulo">Titulo</label>
+                            <input type="text" id="editTitulo" name="Titulo" required>
+                        </div>
+
+                        <div class="campo_form campo_form_ativo">
+                            <label for="editAtivo">Ativo</label>
+                            <input type="checkbox" name="Ativo" id="editAtivo" value="true">
+                        </div>
+                    </div>
+
+                    <div class="linha_form">
+                        <div class="campo_form">
+                            <label for="editAutor">Autor</label>
+                            <input type="text" id="editAutor" name="Autor" required>
+                        </div>
+
+                        <div class="campo_form">
+                            <label for="editCategoria">Categorias</label>
+
+                            <select id="editCategoria">
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="1">Ação e Aventura</option>
+                                <option value="2">Ficção Científica</option>
+                                <option value="3">Romance</option>
+                            </select>
+                        </div>
+
+                        <button id="edit_btn_inserir" type="button">Inserir</button>
+                    </div>
+
+                    <div class="linha_form">
+                        <div id="edit_lista_cats">
+                        </div>
+                    </div>
+
+                    <div class="linha_form">
+                        <div class="campo_form">
+                            <label for="editSinopse">Sinopse</label>
+                            <textarea name="Sinopse" id="editSinopse" rows="6"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="linha_form">
+                        <div class="campo_form">
+                            <label for="editEditora">Editora</label>
+                            <input type="text" id="editEditora" name="Editora" required>
+                        </div>
+
+                        <div class="campo_form">
+                            <label for="editAnoPublicacao">Ano</label>
+                            <input type="number" id="editAnoPublicacao" name="AnoPublicacao" required>
+                        </div>
+
+                        <div class="campo_form input_img">
+                            <span>Foto da capa</span>
+
+                            <label for="editImg" class="input_img_label">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icone_edit_img" viewBox="0 0 640 640">
+                                    <path fill="currentColor"
+                                          d="M331.3 68.7C325.1 62.5 314.9 62.5 308.7 68.7L164.7 212.7z" />
+                                </svg>
+                            </label>
+
+                            <input type="file" name="ArquivoImagem" id="editImg" accept="image/*"
+                                   class="input_img_oculto">
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="CategoriasSelecionadas" id="editCategoriasSelecionadas">
+
+                    <button class="botao_cad" type="submit">
+                        Salvar Edição
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

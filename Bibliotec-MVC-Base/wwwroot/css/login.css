@@ -1,0 +1,130 @@
+/* --------- LOGIN --------- */
+.main_login {
+    width: 100vw;
+    height: calc(100vh - var(--altura_cabecalho));
+    background-image: url("../img/img\ banner.svg");
+    background-size: cover;
+    background-position: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box_login {
+    width: 90%;
+    max-width: 1160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(6.3px);
+    border: 1px solid rgba(255, 255, 255, 0.37);
+}
+
+.box_login span {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+form {
+    width: 90%;
+    max-width: 700px;
+    margin: 50px 0;
+}
+
+.form_linha {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.box_login label {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.box_login input {
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 5px;
+    font-size: 18px;
+}
+
+.box_login input:focus {
+    background-color: var(--cor_destaque);
+    border: none;
+    outline: none;
+}
+
+/* input[type="email"]{} */
+#email {
+    margin-bottom: 40px;
+}
+
+.recuperar_senha {
+    text-align: end;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.recuperar_senha a {
+    color: var(--cor_principal);
+}
+
+
+button[type="submit"] {
+    background-color: var(--cor_principal);
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: var(--cor_branca);
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    margin-top: 40px;
+}
+
+
+
+
+
+/* --------- MEDIAS --------- */
+@media screen and (max-width: 768px) {
+    header nav {
+        position: absolute;
+        flex-direction: column;
+        align-items: end;
+        width: 100vw;
+        max-width: 100vw;
+        background-color: var(--cor_principal);
+        top: -275px;
+        left: 0;
+        z-index: 1;
+        border-radius: 0 0 0 30px;
+        padding: 50px;
+        transition: top 600ms ease-in-out;
+    }
+
+    header a {
+        margin: 15px 0;
+    }
+
+    header .icone_menu svg {
+        display: block;
+    }
+
+}
+
+.msg_erro_login {
+    color: red;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}

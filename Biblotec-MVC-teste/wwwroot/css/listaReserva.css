@@ -1,0 +1,79 @@
+.statusF {
+    color: #4CAF50;
+}
+
+.statusP {
+    color: #FF9800;
+}
+
+.statusA {
+    color: #bb0000;
+}
+
+.statusE {
+    color: #0011ff;
+}
+
+.filtros_reserva {
+    margin-bottom: 1rem;
+    max-width: 700px;
+    width: 90%;
+    display: flex;
+    gap: 15px;
+}
+
+.filtros_reserva #filtroTitulo {
+    flex: 2;
+}
+
+.filtros_reserva #filtroStatus {
+    flex: 1;
+}
+
+.filtros_reserva #filtroTitulo,
+.filtros_reserva #filtroStatus {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+@media(max-width: 768px) {
+    .filtros_reserva {
+        flex-direction: column;
+    }
+}
+
+.msg_vazio {
+    text-align: center;
+}
+
+.modal_conteudo_reserva {
+    display: block;
+}
+
+.modal_info_reserva {
+    margin-top: 20px;
+}
+
+.titulo_modal_editar {
+    margin-bottom: 20px;
+}
+
+.linha_form_dupla {
+    display: flex;
+    gap: 15px;
+}
+
+.campo_form_metade {
+    flex: 1;
+}
+
+.btn_excluir_reserva {
+    background-color: transparent;
+    border: none;
+}
+
+.btn_excluir_reserva:hover {
+    color: #bb0000;
+}

@@ -1,0 +1,123 @@
+/* ---------- FORM ---------- */
+.form_cad_livro {
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    width: 92%;
+    max-width: 700px;
+    flex: 1;
+    /* justify-content: center; */
+    overflow-y: auto;
+    padding: 10px 10px 20px 5px;
+}
+
+.linha_form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.form_cad_livro .campo_form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.form_cad_livro .campo_form_ativo {
+    flex: none;
+}
+
+.form_cad_livro span,
+.form_cad_livro label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+form select,
+.input_img label,
+form input {
+    height: 35px;
+}
+
+
+.modal_overlay #edit_btn_inserir,
+.form_cad_livro button {
+    background-color: var(--cor_branca);
+    border-radius: 5px;
+    border: solid 2px var(--cor_destaque);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#edit_btn_inserir,
+#cad_btn_inserir {
+    padding: 8px 16px;
+    align-self: end;
+    box-shadow: 1px 2px 5px #0000004d;
+
+}
+
+.cad_span_cat_vazio {
+    color: #bb0000;
+}
+
+#cad_lista_cats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cad_span_cat {}
+
+button.btn_item_excluir {
+    border: none;
+    background-color: #FFFFFF00;
+}
+
+button.btn_item_excluir svg {
+    color: #bb0000;
+}
+
+form textarea {
+    padding: 5px;
+}
+
+form select,
+.input_img label,
+form textarea,
+form input {
+    padding-left: 5px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 1px 2px 5px #0000004d;
+}
+
+.input_img svg {
+    width: 30px;
+}
+
+.input_img label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor_branca);
+    min-width: 100px;
+    cursor: pointer;
+}
+
+.input_img input {
+    display: none;
+}
+
+.botao_cad {
+    text-transform: uppercase;
+    padding: 5px;
+    font-size: 13px;
+    width: 90%;
+    max-width: 400px;
+    align-self: center;
+    box-shadow: 1px 2px 5px #0000004d;
+
+}

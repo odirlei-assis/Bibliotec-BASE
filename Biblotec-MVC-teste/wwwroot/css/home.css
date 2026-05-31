@@ -1,0 +1,495 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/* --------- CABECALHO --------- */
+header {
+    background-color: var(--cor_principal);
+    height: var(--altura_cabecalho);
+}
+
+.container_header {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+    align-items: center;
+}
+
+header .icone_menu svg {
+    fill: var(--cor_branca);
+    width: 40px;
+    display: none;
+}
+
+header nav {
+    width: 60%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: var(--cor_branca);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+/* ---------- BANNER ---------- */
+.banner {
+    background-image: url("../img/img\ banner.svg");
+    background-size: cover;
+    color: var(--cor_branca);
+}
+
+.container_banner {
+    display: flex;
+    width: 90%;
+    max-width: 1440px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.texto_banner {
+    /* background-color: chartreuse; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.texto_banner span {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.texto_banner p {
+    font-size: 25px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.banner a {
+    color: var(--cor_branca);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: var(--cor_destaque);
+    padding: 15px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: 500ms ease-in-out;
+}
+
+.banner a:hover {
+    background-color: var(--cor_branca);
+    color: var(--cor_destaque);
+    /* scale: 1.1; */
+    /* padding: 15px 80px; */
+}
+
+.container_banner img {
+    margin-top: 65px;
+}
+
+
+
+
+
+/* ---------- CARDS INFO ---------- */
+.cards_info {
+    background-color: var(--cor_cinza);
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.cards_info h2 {
+    text-align: center;
+    font-size: 30px;
+}
+
+.linha_h2 {
+    height: 3px;
+    width: 300px;
+    background-color: var(--cor_destaque);
+    margin: 20px auto 100px;
+    border-radius: 2px;
+}
+
+.container_cards_info {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.card_info {
+    width: 270px;
+    height: 330px;
+    background-color: var(--cor_branca);
+    border-radius: 30px;
+    border: solid 1px var(--cor_principal);
+    box-shadow: 5px 5px 30px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 5px 5px 30px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 5px 5px 30px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+}
+
+.esfera_icone {
+    width: 130px;
+    height: 130px;
+    border-radius: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 5px var(--cor_destaque);
+    position: absolute;
+    top: -45px;
+    background-color: var(--cor_branca);
+}
+
+.card_info h3 {
+    text-transform: uppercase;
+    font-size: 20px;
+    width: 205px;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.card_info p {
+    width: 170px;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+
+
+
+/* ---------- BANNER 2 ---------- */
+.banner2 {
+    background-image: url("../img/banner2.png");
+    background-size: cover;
+    height: 445px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-position-x: right;
+}
+
+.banner2_texto {
+    width: 500px;
+    color: var(--cor_branca);
+}
+
+.banner2_texto h2 {
+    font-size: 30px;
+}
+
+.banner2_texto p {
+    font-size: 25px;
+    width: 390px;
+    margin: 50px 0;
+}
+
+.banner2_texto a {
+    color: var(--cor_branca);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    background-color: var(--cor_destaque);
+    padding: 15px 45px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+
+
+
+/* ---------- SECAO LIVROS ---------- */
+.cards_livros {
+    padding: 100px 0;
+    overflow-x: scroll;
+}
+
+.cards_livros h2 {
+    text-align: center;
+    font-size: 30px;
+}
+
+.cards_livros .linha_h2 {
+    margin-bottom: 50px;
+}
+
+.container_livros {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.card_livro {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    justify-content: space-between;
+}
+
+.card_livro img {
+    width: 200px;
+    height: 300px;
+}
+
+.card_livro p,
+.card_livro h3 {
+    text-transform: uppercase;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+
+
+/* ---------- RODAPE ---------- */
+footer {
+    background-color: var(--cor_principal);
+    color: var(--cor_branca);
+    padding: 50px 0 0;
+}
+
+.container_rodape {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.div_logos {
+    display: flex;
+    flex-direction: column;
+}
+
+.div_logos img {
+    margin: 45px 0;
+}
+
+footer .linha1 {
+    display: flex;
+    margin-bottom: 100px;
+}
+
+footer .coluna {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .coluna a:first-child {
+    color: var(--cor_destaque);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+footer .coluna a:not(:first-child) {
+    margin-top: 10px;
+}
+
+footer .coluna2 {
+    margin-left: 50px;
+}
+
+footer a {
+    color: var(--cor_branca);
+    text-decoration: none;
+}
+
+.linha2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.linha2 span {
+    color: var(--cor_destaque);
+    font-weight: 600;
+
+}
+
+.linha2 img {
+    width: 30px;
+}
+
+footer hr {
+    width: 90%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.rodape2 {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 1000px;
+    padding: 40px 0;
+    font-size: 13px;
+}
+
+.rodape2 a {
+    margin-left: 20px;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .container_banner img {
+        width: 360px;
+    }
+
+    .card_info {
+        width: 220px;
+        height: 275px;
+    }
+
+    .esfera_icone {
+        width: 100px;
+        height: 100px;
+    }
+
+    .esfera_icone img {
+        width: 60px;
+        max-height: 55px;
+    }
+
+    .card_info h3 {
+        margin-top: 40px;
+    }
+
+    .banner2 {
+        background-position-x: 35%;
+    }
+
+    .banner2_texto {
+        display: none;
+    }
+
+    .container_livros {
+        overflow-x: auto;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    header nav {
+        position: absolute;
+        flex-direction: column;
+        align-items: end;
+        width: 100vw;
+        max-width: 100vw;
+        background-color: var(--cor_principal);
+        top: -275px;
+        left: 0;
+        z-index: 1;
+        border-radius: 0 0 0 30px;
+        padding: 50px;
+        transition: top 600ms ease-in-out;
+    }
+
+    header a {
+        margin: 15px 0;
+    }
+
+    header .icone_menu svg {
+        display: block;
+    }
+
+    .banner {
+        padding: 50px 0;
+    }
+
+    .container_banner img {
+        display: none;
+    }
+
+    .container_banner {
+        justify-content: center;
+    }
+
+    .texto_banner {
+        align-items: center;
+        text-align: center;
+    }
+
+    .container_cards_info {
+        flex-direction: column;
+        align-items: center;
+        gap: 100px;
+    }
+
+    .container_rodape {
+        flex-direction: column;
+    }
+
+    .div_logos {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .div_logos img {
+        width: 140px;
+    }
+
+    footer .linha1 {
+        justify-content: space-around;
+    }
+
+    footer hr {
+        margin-top: 50px;
+    }
+
+    .linha2 {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .rodape2 {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .rodape2 nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .rodape2 a {
+        margin-left: 0;
+    }
+}

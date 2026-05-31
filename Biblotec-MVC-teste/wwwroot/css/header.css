@@ -1,0 +1,40 @@
+/* --------- CABECALHO --------- */
+header {
+    background-color: var(--cor_principal);
+    height: var(--altura_cabecalho);
+}
+
+.container_header {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+    align-items: center;
+}
+
+header .icone_menu svg {
+    fill: var(--cor_branca);
+    width: 40px;
+    display: none;
+}
+
+header nav {
+    width: 60%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: var(--cor_branca);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+header a:last-child {
+    color: var(--cor_destaque);
+}

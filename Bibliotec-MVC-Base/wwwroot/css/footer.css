@@ -1,0 +1,133 @@
+/* ---------- RODAPE ---------- */
+footer {
+    background-color: var(--cor_principal);
+    color: var(--cor_branca);
+    padding: 50px 0 0;
+}
+
+.container_rodape {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.div_logos {
+    display: flex;
+    flex-direction: column;
+}
+
+.div_logos img {
+    margin: 45px 0;
+}
+
+footer .linha1 {
+    display: flex;
+    margin-bottom: 100px;
+}
+
+footer .coluna {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .coluna a:first-child {
+    color: var(--cor_destaque);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+footer .coluna a:not(:first-child) {
+    margin-top: 10px;
+}
+
+footer .coluna2 {
+    margin-left: 50px;
+}
+
+footer a {
+    color: var(--cor_branca);
+    text-decoration: none;
+}
+
+.linha2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.linha2 span {
+    color: var(--cor_destaque);
+    font-weight: 600;
+
+}
+
+.linha2 img {
+    width: 30px;
+}
+
+footer hr {
+    width: 90%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.rodape2 {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 1000px;
+    padding: 40px 0;
+    font-size: 13px;
+}
+
+.rodape2 a {
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .container_rodape {
+        flex-direction: column;
+    }
+
+    .div_logos {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .div_logos img {
+        width: 140px;
+    }
+
+    footer .linha1 {
+        justify-content: space-around;
+    }
+
+    footer hr {
+        margin-top: 50px;
+    }
+
+    .linha2 {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .rodape2 {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .rodape2 nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .rodape2 a {
+        margin-left: 0;
+    }
+}
