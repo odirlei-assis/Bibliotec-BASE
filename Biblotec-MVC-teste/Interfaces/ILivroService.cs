@@ -9,5 +9,10 @@ namespace Biblotec_MVC_teste.Interfaces
     public interface ILivroService
     {
         Task<IEnumerable<Livro>> BuscarLivrosComCatAsync();
+
+        Task<bool> RemoverLivroAsync(int id);
+
+        Task AtualizarLivroAsync(int id, Livro livroEditado, string? categoriasSelecionadas, IFormFile? arquivoImagem, string? ativo);
+
     }
 }

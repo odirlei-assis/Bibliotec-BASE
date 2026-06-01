@@ -27,5 +27,20 @@ namespace Biblotec_MVC_teste.Controllers
 
             return View(livros);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Excluir(int id)
+        {
+            string? adminSession = HttpContext.Session.GetString("Admin");
+            if (adminSession == null || (adminSession != "True" && adminSession != "true"))
+                return Unauthorized();
+
+            bool removido = await _livroService.RemoverLivroAsync(id);
+
+            if (removido)
+                return Ok();
+
+            return NotFound();
+        }
     }
 }

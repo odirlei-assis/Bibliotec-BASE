@@ -1,44 +1,44 @@
 // -------------------- Lógica do Modal de Detalhes --------------------
-// const botoesDetalhes = document.querySelectorAll('.btn_detalhes');
-// const modalDetalhes = document.getElementById('modalDetalhes');
-// const fecharModal = document.getElementById('fecharModal');
+const botoesDetalhes = document.querySelectorAll('.btn_detalhes');
+const modalDetalhes = document.getElementById('modalDetalhes');
+const fecharModal = document.getElementById('fecharModal');
 
-// botoesDetalhes.forEach(btn => {
-//     btn.addEventListener('click', (e) => {
-//         e.preventDefault();
+botoesDetalhes.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
 
-//         // Pegar os dados
-//         const titulo = btn.getAttribute('data-titulo');
-//         const id = btn.getAttribute('data-id');
-//         const autor = btn.getAttribute('data-autor');
-//         const editora = btn.getAttribute('data-editora');
-//         const ano = btn.getAttribute('data-ano');
-//         const status = btn.getAttribute('data-status');
-//         const categorias = btn.getAttribute('data-categorias');
-//         const sinopse = btn.getAttribute('data-sinopse');
-//         const imagem = btn.getAttribute('data-imagem');
+        // Pegar os dados
+        const titulo = btn.getAttribute('data-titulo');
+        const id = btn.getAttribute('data-id');
+        const autor = btn.getAttribute('data-autor');
+        const editora = btn.getAttribute('data-editora');
+        const ano = btn.getAttribute('data-ano');
+        const status = btn.getAttribute('data-status');
+        const categorias = btn.getAttribute('data-categorias');
+        const sinopse = btn.getAttribute('data-sinopse');
+        const imagem = btn.getAttribute('data-imagem');
 
-//         // Preencher o modal
-//         document.getElementById('modalTitulo').innerText = titulo;
-//         document.getElementById('modalId').innerText = id;
-//         document.getElementById('modalAutor').innerText = autor;
-//         document.getElementById('modalEditora').innerText = editora;
-//         document.getElementById('modalAno').innerText = ano;
-//         document.getElementById('modalStatus').innerText = status;
-//         document.getElementById('modalCategorias').innerText = categorias || 'Nenhuma';
-//         document.getElementById('modalSinopse').innerText = sinopse || 'Sem sinopse disponível.';
-//         document.getElementById('modalImagem').src = imagem;
+        // Preencher o modal
+        document.getElementById('modalTitulo').innerText = titulo;
+        document.getElementById('modalId').innerText = id;
+        document.getElementById('modalAutor').innerText = autor;
+        document.getElementById('modalEditora').innerText = editora;
+        document.getElementById('modalAno').innerText = ano;
+        document.getElementById('modalStatus').innerText = status;
+        document.getElementById('modalCategorias').innerText = categorias || 'Nenhuma';
+        document.getElementById('modalSinopse').innerText = sinopse || 'Sem sinopse disponível.';
+        document.getElementById('modalImagem').src = imagem;
 
-//         // Exibir modal
-//         modalDetalhes.style.display = 'flex';
-//     });
-// });
+        // Exibir modal
+        modalDetalhes.style.display = 'flex';
+    });
+});
 
-// if (fecharModal) {
-//     fecharModal.addEventListener('click', () => {
-//         modalDetalhes.style.display = 'none';
-//     });
-// }
+if (fecharModal) {
+    fecharModal.addEventListener('click', () => {
+        modalDetalhes.style.display = 'none';
+    });
+}
 
 // -------------------- LÓGICA DO MODAL DE EDIÇÃO --------------------
 // const modalEditar = document.getElementById('modalEditar');
@@ -129,50 +129,51 @@ if (inputBusca) {
 }
 
 // -------------------- Lógica de exclusão com SweetAlert2 --------------------
-// const botoesExcluir = document.querySelectorAll('.btn_excluir_livro');
-// botoesExcluir.forEach(btn => {
-//     btn.addEventListener('click', () => {
-//         const id = btn.getAttribute('data-id');
+const botoesExcluir = document.querySelectorAll('.btn_excluir_livro');
+botoesExcluir.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
 
-//         Swal.fire({
-//             title: 'Tem certeza?',
-//             text: "Esta ação não pode ser desfeita!",
-//             icon: 'warning',
-//             showCancelButton: true,
-//             confirmButtonColor: '#3085d6',
-//             cancelButtonColor: '#d33',
-//             confirmButtonText: 'Sim, excluir!',
-//             cancelButtonText: 'Cancelar'
-//         }).then((result) => {
-//             if (result.isConfirmed) {
-//                 fetch(`/Livro/Excluir/${id}`, {
-//                     method: 'POST',
-//                     headers: {
-//                         'Content-Type': 'application/json'
-//                     }
-//                 }).then(response => {
-//                     if (response.ok) {
-//                         Swal.fire(
-//                             'Excluído!',
-//                             'O livro foi excluído com sucesso.',
-//                             'success'
-//                         ).then(() => {
-//                             window.location.reload();
-//                         });
-//                     } else {
-//                         Swal.fire(
-//                             'Erro!',
-//                             'Ocorreu um problema ao tentar excluir o livro.',
-//                             'error'
-//                         );
-//                     }
-//                 }).catch(error => {
-//                     Swal.fire('Erro!', 'Não foi possível completar a operação.', 'error');
-//                 });
-//             }
-//         });
-//     });
-// });
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: "Esta ação não pode ser desfeita!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, excluir!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/Livro/Excluir/${id}`, {
+                    method: 'POST'
+                }).then(response => {
+                    if (response.ok) {
+                        Swal.fire(
+                            'Excluído!',
+                            'O livro foi excluído com sucesso.',
+                            'success'
+                        ).then(() => {
+                            window.location.reload();
+                        });
+                    } else if (response.status === 404) {
+                        Swal.fire('Livro não encontrado', '', 'error');
+                    } else if (response.status === 401) {
+                        Swal.fire('Sem permissão', '', 'error');
+                    } else {
+                        Swal.fire(
+                            'Erro!',
+                            'Ocorreu um problema ao tentar excluir o livro.',
+                            'error'
+                        );
+                    }
+                }).catch(error => {
+                    Swal.fire('Erro!', 'Não foi possível completar a operação.', 'error');
+                });
+            }
+        });
+    });
+});
 
 // -------------------- LÓGICA DE CATEGORIAS (EDIÇÃO) --------------------
 // const editSelectCategoria = document.getElementById("editCategoria");

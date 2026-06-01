@@ -89,32 +89,46 @@ public class LivroService : ILivroService
 
     public async Task UpdateLivroAsync(int id, Livro livroEditado, string? categoriasSelecionadas, IFormFile? arquivoImagem, string? ativo)
     {
+        // Busca o livro existente no banco junto com suas categorias
         var livroExistente = await _livroRepository.GetByIdWithCategoriesAsync(id);
-        if (livroExistente == null) throw new KeyNotFoundException("Livro não encontrado.");
 
+        // Se não encontrar o livro, interrompe a execução
+        if (livroExistente == null)
+            throw new KeyNotFoundException("Livro não encontrado.");
+
+        // Atualiza os dados básicos do livro
         livroExistente.Titulo = livroEditado.Titulo;
         livroExistente.Autor = livroEditado.Autor;
         livroExistente.Editora = livroEditado.Editora;
         livroExistente.AnoPublicacao = livroEditado.AnoPublicacao;
         livroExistente.Sinopse = livroEditado.Sinopse;
+
+        // Define o status do livro:
+        // D = Disponível | I = Indisponível
         livroExistente.Status = (ativo == "true" || ativo == "on") ? "D" : "I";
 
+        // Se uma nova imagem foi enviada, faz o upload e atualiza o caminho da imagem
         if (arquivoImagem != null && arquivoImagem.Length > 0)
         {
             livroExistente.Imagem = await ProcessImageUploadAsync(arquivoImagem);
         }
 
+        // Salva as alterações do livro
         await _livroRepository.UpdateAsync(livroExistente);
 
+        // Remove todos os relacionamentos atuais entre o livro e suas categorias
         await _livroRepository.RemoveLivroCategoriasAsync(livroExistente.LivroCategorias);
 
+        // Verifica se foram enviadas categorias
         if (!string.IsNullOrEmpty(categoriasSelecionadas))
         {
+            // Converte a string "1,2,3" em uma lista de inteiros
             var categoriaIds = categoriasSelecionadas.Split(',')
                 .Select(cid => int.TryParse(cid, out var parsed) ? parsed : 0)
                 .Where(cid => cid > 0)
                 .ToList();
 
+            // Cria novamente os relacionamentos Livro x Categoria
             foreach (var catId in categoriaIds)
             {
                 var lc = new LivroCategoria
@@ -122,11 +136,11 @@ public class LivroService : ILivroService
                     LivroId = livroExistente.Id,
                     CategoriaId = catId
                 };
+
                 await _livroRepository.AddLivroCategoriaAsync(lc);
             }
         }
     }
-
     public async Task DeleteLivroAsync(int id)
     {
         await _livroRepository.RemoveCategoriasFromLivroAsync(id);
